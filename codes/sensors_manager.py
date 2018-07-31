@@ -16,8 +16,7 @@ class Vrep_object():
 
 	def get_orientation():
 		handler = vrep.simxGetObjectHandle(self.link, "NAO", 0x01000)
-		errors, orientation = vrep.simxGetObjectOrientation(self.link
-															handler, 
+		errors, orientation = vrep.simxGetObjectOrientation(self.link, handler, 
 															-1,
                                                   			simx_opmode_streaming)
 		return orientation
