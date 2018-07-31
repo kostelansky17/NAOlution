@@ -24,7 +24,8 @@ class Vrep_object():
 if __name__ == "__main__":
 	link = vrep.simxStart('127.0.0.2',19999,True,True,5000,5)
 	
-	print("Connection successful") if link == -1
+	if link == -1:
+		print("Connection successful")
 
 
 	handler = None

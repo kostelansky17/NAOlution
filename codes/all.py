@@ -49,13 +49,13 @@ class ObjectManager():
         print(errors)        
         return handler
     
-    def get_positioon(self):
+    def get_position(self):
         errors, position = vrep.simxGetObjectPosition(self.connection_manager.client_ID, self.handler, -1, self.simx_opmode_blocking)
-        print(errors)
+        
         return position
 
     def get_orientation(self):
-        errors, orientation = vrep.simxGetObjectPosition(self.connection_manager.client_ID, self.handler, -1, self.simx_opmode_blocking)
+        errors, orientation = vrep.simxGetObjectOrientation(self.connection_manager.client_ID, self.handler, -1, self.simx_opmode_blocking)
         return orientation       
 
 
@@ -66,10 +66,10 @@ if __name__ == "__main__":
     connection_manager = ConnectionManager(naoIP, naoPort)
     proxy_manager = ProxyManager(naoIP,naoPort)
     movement = Movement(proxy_manager)
-    object_manager = ObjectManager(connection_manager,"N")
+    object_manager = ObjectManager(connection_manager,"NAO")
     
-    movement.move_init()    
-    print(object_manager.get_positioon())
-    movement.moveTo(1,1,0)
-    print(object_manager.get_positioon())
+    #movement.move_init()    
+    print(object_manager.get_position())
+    #movement.moveTo(1,0,0)
+    print(object_manager.get_position())
     
