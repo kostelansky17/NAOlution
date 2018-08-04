@@ -7,18 +7,13 @@ class Vrep_object():
 		self.tag = tag
 
 	def _get_object_handler(component_tag, simx_opmode_blocking):
-		errors, handler = vrep.simxGetObjectHandle(self.link, 
-												   str(component_tag),
-            									   simx_opmode_blocking)
-		#TODO add erors to log
+		errors, handler = vrep.simxGetObjectHandle(self.link, str(component_tag), simx_opmode_blocking)
 
 		return handler
 
 	def get_orientation():
 		handler = vrep.simxGetObjectHandle(self.link, "NAO", 0x01000)
-		errors, orientation = vrep.simxGetObjectOrientation(self.link, handler, 
-															-1,
-                                                  			simx_opmode_streaming)
+		errors, orientation = vrep.simxGetObjectOrientation(self.link, handler, -1, simx_opmode_streaming)
 		return orientation
 
 if __name__ == "__main__":
