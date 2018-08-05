@@ -8,6 +8,7 @@ from keras.preprocessing import image
 from keras.initializers import random_normal
 import numpy as np
 import tensorflow as tf
+import array
 
 def create_cnn():
     input_shape = (128,128,1)
@@ -32,17 +33,24 @@ def create_list_of_cnn(size):
 
     return cnn_list
 
-def preprocess_img(img_path):
+def preprocess_img_from_path(img_path):
     img = image.load_img(img_path, color_mode = 'grayscale', target_size=(128, 128))
     x = image.img_to_array(img)
     x = np.expand_dims(x, axis=0)
 
     return x
 
+#todo preprocess img form vrepsimx to cnn input
+def preprocess_img(img):
+    x = image.img_to_array(img)
+    x = np.expand_dims(img, axis=0)
+
+    return x
+
 if __name__ == "__main__":
     
     img_name = "nao.jpg"
-    img = preprocess_img(img_name)
+    img = preprocess_img_from_path(img_name)
     
     cnns = create_list_of_cnn(5)
 
