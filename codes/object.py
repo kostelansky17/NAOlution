@@ -7,6 +7,7 @@ from PIL import Image as I
 import array
 from time import sleep
 
+#from object to unctions?
 class ObjectManager():
     def __init__(self, ip, port, component_tag):
         self.client_ID = vrep.simxStart(ip,19999,True,True,port,5)

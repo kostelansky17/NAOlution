@@ -3,72 +3,72 @@ import sys
 from naoqi import ALProxy
 
 #Moves with NAO's joints in the simulation
-def JointControl(clientID,motionProxy,i,Body):
-    while(vrep.simxGetConnectionId(clientID)!=-1):
+def JointControl(client_ID,motion_proxy,i,body):
+    while(vrep.simxGetConnectionId(client_ID)!=-1):
         #Getting joint's angles from Choregraphe (please check your robot's IP)
-        commandAngles = motionProxy.getAngles('Body', False)
+        commandAngles = motion_proxy.getAngles('body', False)
         #Head
-        vrep.simxSetJointTargetPosition(clientID,Body[0][i],commandAngles[0],vrep.simx_opmode_streaming)
-        vrep.simxSetJointTargetPosition(clientID,Body[1][i],commandAngles[1],vrep.simx_opmode_streaming)
+        vrep.simxSetJointTargetPosition(client_ID,body[0][i],commandAngles[0],vrep.simx_opmode_streaming)
+        vrep.simxSetJointTargetPosition(client_ID,body[1][i],commandAngles[1],vrep.simx_opmode_streaming)
         #Left Leg
-        vrep.simxSetJointTargetPosition(clientID,Body[2][i],commandAngles[8],vrep.simx_opmode_streaming)
-        vrep.simxSetJointTargetPosition(clientID,Body[3][i],commandAngles[9],vrep.simx_opmode_streaming)
-        vrep.simxSetJointTargetPosition(clientID,Body[4][i],commandAngles[10],vrep.simx_opmode_streaming)
-        vrep.simxSetJointTargetPosition(clientID,Body[5][i],commandAngles[11],vrep.simx_opmode_streaming)
-        vrep.simxSetJointTargetPosition(clientID,Body[6][i],commandAngles[12],vrep.simx_opmode_streaming)
-        vrep.simxSetJointTargetPosition(clientID,Body[7][i],commandAngles[13],vrep.simx_opmode_streaming)
+        vrep.simxSetJointTargetPosition(client_ID,body[2][i],commandAngles[8],vrep.simx_opmode_streaming)
+        vrep.simxSetJointTargetPosition(client_ID,body[3][i],commandAngles[9],vrep.simx_opmode_streaming)
+        vrep.simxSetJointTargetPosition(client_ID,body[4][i],commandAngles[10],vrep.simx_opmode_streaming)
+        vrep.simxSetJointTargetPosition(client_ID,body[5][i],commandAngles[11],vrep.simx_opmode_streaming)
+        vrep.simxSetJointTargetPosition(client_ID,body[6][i],commandAngles[12],vrep.simx_opmode_streaming)
+        vrep.simxSetJointTargetPosition(client_ID,body[7][i],commandAngles[13],vrep.simx_opmode_streaming)
         #Right Leg
-        vrep.simxSetJointTargetPosition(clientID,Body[8][i],commandAngles[14],vrep.simx_opmode_streaming)
-        vrep.simxSetJointTargetPosition(clientID,Body[9][i],commandAngles[15],vrep.simx_opmode_streaming)
-        vrep.simxSetJointTargetPosition(clientID,Body[10][i],commandAngles[16],vrep.simx_opmode_streaming)
-        vrep.simxSetJointTargetPosition(clientID,Body[11][i],commandAngles[17],vrep.simx_opmode_streaming)
-        vrep.simxSetJointTargetPosition(clientID,Body[12][i],commandAngles[18],vrep.simx_opmode_streaming)
-        vrep.simxSetJointTargetPosition(clientID,Body[13][i],commandAngles[19],vrep.simx_opmode_streaming)
+        vrep.simxSetJointTargetPosition(client_ID,body[8][i],commandAngles[14],vrep.simx_opmode_streaming)
+        vrep.simxSetJointTargetPosition(client_ID,body[9][i],commandAngles[15],vrep.simx_opmode_streaming)
+        vrep.simxSetJointTargetPosition(client_ID,body[10][i],commandAngles[16],vrep.simx_opmode_streaming)
+        vrep.simxSetJointTargetPosition(client_ID,body[11][i],commandAngles[17],vrep.simx_opmode_streaming)
+        vrep.simxSetJointTargetPosition(client_ID,body[12][i],commandAngles[18],vrep.simx_opmode_streaming)
+        vrep.simxSetJointTargetPosition(client_ID,body[13][i],commandAngles[19],vrep.simx_opmode_streaming)
         #Left Arm
-        vrep.simxSetJointTargetPosition(clientID,Body[14][i],commandAngles[2],vrep.simx_opmode_streaming)
-        vrep.simxSetJointTargetPosition(clientID,Body[15][i],commandAngles[3],vrep.simx_opmode_streaming)
-        vrep.simxSetJointTargetPosition(clientID,Body[16][i],commandAngles[4],vrep.simx_opmode_streaming)
-        vrep.simxSetJointTargetPosition(clientID,Body[17][i],commandAngles[5],vrep.simx_opmode_streaming)
-        vrep.simxSetJointTargetPosition(clientID,Body[18][i],commandAngles[6],vrep.simx_opmode_streaming)
+        vrep.simxSetJointTargetPosition(client_ID,body[14][i],commandAngles[2],vrep.simx_opmode_streaming)
+        vrep.simxSetJointTargetPosition(client_ID,body[15][i],commandAngles[3],vrep.simx_opmode_streaming)
+        vrep.simxSetJointTargetPosition(client_ID,body[16][i],commandAngles[4],vrep.simx_opmode_streaming)
+        vrep.simxSetJointTargetPosition(client_ID,body[17][i],commandAngles[5],vrep.simx_opmode_streaming)
+        vrep.simxSetJointTargetPosition(client_ID,body[18][i],commandAngles[6],vrep.simx_opmode_streaming)
         #Right Arm
-        vrep.simxSetJointTargetPosition(clientID,Body[19][i],commandAngles[20],vrep.simx_opmode_streaming)
-        vrep.simxSetJointTargetPosition(clientID,Body[20][i],commandAngles[21],vrep.simx_opmode_streaming)
-        vrep.simxSetJointTargetPosition(clientID,Body[21][i],commandAngles[22],vrep.simx_opmode_streaming)
-        vrep.simxSetJointTargetPosition(clientID,Body[22][i],commandAngles[23],vrep.simx_opmode_streaming)
-        vrep.simxSetJointTargetPosition(clientID,Body[23][i],commandAngles[24],vrep.simx_opmode_streaming)
+        vrep.simxSetJointTargetPosition(client_ID,body[19][i],commandAngles[20],vrep.simx_opmode_streaming)
+        vrep.simxSetJointTargetPosition(client_ID,body[20][i],commandAngles[21],vrep.simx_opmode_streaming)
+        vrep.simxSetJointTargetPosition(client_ID,body[21][i],commandAngles[22],vrep.simx_opmode_streaming)
+        vrep.simxSetJointTargetPosition(client_ID,body[22][i],commandAngles[23],vrep.simx_opmode_streaming)
+        vrep.simxSetJointTargetPosition(client_ID,body[23][i],commandAngles[24],vrep.simx_opmode_streaming)
 
 
 #Get the Handle of only one NAO
-def get_first_handles(clientID,Body):    
+def get_first_handles(client_ID,body):    
     #Head
-    Body[0].append(vrep.simxGetObjectHandle(clientID,'HeadYaw#',vrep.simx_opmode_oneshot_wait)[1])
-    Body[1].append(vrep.simxGetObjectHandle(clientID,'HeadPitch#',vrep.simx_opmode_oneshot_wait)[1])
+    body[0].append(vrep.simxGetObjectHandle(client_ID,'HeadYaw#',vrep.simx_opmode_oneshot_wait)[1])
+    body[1].append(vrep.simxGetObjectHandle(client_ID,'HeadPitch#',vrep.simx_opmode_oneshot_wait)[1])
     #Left Leg
-    Body[2].append(vrep.simxGetObjectHandle(clientID,'LHipYawPitch3#',vrep.simx_opmode_oneshot_wait)[1])
-    Body[3].append(vrep.simxGetObjectHandle(clientID,'LHipRoll3#',vrep.simx_opmode_oneshot_wait)[1])
-    Body[4].append(vrep.simxGetObjectHandle(clientID,'LHipPitch3#',vrep.simx_opmode_oneshot_wait)[1])
-    Body[5].append(vrep.simxGetObjectHandle(clientID,'LKneePitch3#',vrep.simx_opmode_oneshot_wait)[1])
-    Body[6].append(vrep.simxGetObjectHandle(clientID,'LAnklePitch3#',vrep.simx_opmode_oneshot_wait)[1])
-    Body[7].append(vrep.simxGetObjectHandle(clientID,'LAnkleRoll3#',vrep.simx_opmode_oneshot_wait)[1])
+    body[2].append(vrep.simxGetObjectHandle(client_ID,'LHipYawPitch3#',vrep.simx_opmode_oneshot_wait)[1])
+    body[3].append(vrep.simxGetObjectHandle(client_ID,'LHipRoll3#',vrep.simx_opmode_oneshot_wait)[1])
+    body[4].append(vrep.simxGetObjectHandle(client_ID,'LHipPitch3#',vrep.simx_opmode_oneshot_wait)[1])
+    body[5].append(vrep.simxGetObjectHandle(client_ID,'LKneePitch3#',vrep.simx_opmode_oneshot_wait)[1])
+    body[6].append(vrep.simxGetObjectHandle(client_ID,'LAnklePitch3#',vrep.simx_opmode_oneshot_wait)[1])
+    body[7].append(vrep.simxGetObjectHandle(client_ID,'LAnkleRoll3#',vrep.simx_opmode_oneshot_wait)[1])
     #Right Leg
-    Body[8].append(vrep.simxGetObjectHandle(clientID,'RHipYawPitch3#',vrep.simx_opmode_oneshot_wait)[1])
-    Body[9].append(vrep.simxGetObjectHandle(clientID,'RHipRoll3#',vrep.simx_opmode_oneshot_wait)[1])
-    Body[10].append(vrep.simxGetObjectHandle(clientID,'RHipPitch3#',vrep.simx_opmode_oneshot_wait)[1])
-    Body[11].append(vrep.simxGetObjectHandle(clientID,'RKneePitch3#',vrep.simx_opmode_oneshot_wait)[1])
-    Body[12].append(vrep.simxGetObjectHandle(clientID,'RAnklePitch3#',vrep.simx_opmode_oneshot_wait)[1])
-    Body[13].append(vrep.simxGetObjectHandle(clientID,'RAnkleRoll3#',vrep.simx_opmode_oneshot_wait)[1])
+    body[8].append(vrep.simxGetObjectHandle(client_ID,'RHipYawPitch3#',vrep.simx_opmode_oneshot_wait)[1])
+    body[9].append(vrep.simxGetObjectHandle(client_ID,'RHipRoll3#',vrep.simx_opmode_oneshot_wait)[1])
+    body[10].append(vrep.simxGetObjectHandle(client_ID,'RHipPitch3#',vrep.simx_opmode_oneshot_wait)[1])
+    body[11].append(vrep.simxGetObjectHandle(client_ID,'RKneePitch3#',vrep.simx_opmode_oneshot_wait)[1])
+    body[12].append(vrep.simxGetObjectHandle(client_ID,'RAnklePitch3#',vrep.simx_opmode_oneshot_wait)[1])
+    body[13].append(vrep.simxGetObjectHandle(client_ID,'RAnkleRoll3#',vrep.simx_opmode_oneshot_wait)[1])
     #Left Arm
-    Body[14].append(vrep.simxGetObjectHandle(clientID,'LShoulderPitch3#',vrep.simx_opmode_oneshot_wait)[1])
-    Body[15].append(vrep.simxGetObjectHandle(clientID,'LShoulderRoll3#',vrep.simx_opmode_oneshot_wait)[1])
-    Body[16].append(vrep.simxGetObjectHandle(clientID,'LElbowYaw3#',vrep.simx_opmode_oneshot_wait)[1])
-    Body[17].append(vrep.simxGetObjectHandle(clientID,'LElbowRoll3#',vrep.simx_opmode_oneshot_wait)[1])
-    Body[18].append(vrep.simxGetObjectHandle(clientID,'LWristYaw3#',vrep.simx_opmode_oneshot_wait)[1])
+    body[14].append(vrep.simxGetObjectHandle(client_ID,'LShoulderPitch3#',vrep.simx_opmode_oneshot_wait)[1])
+    body[15].append(vrep.simxGetObjectHandle(client_ID,'LShoulderRoll3#',vrep.simx_opmode_oneshot_wait)[1])
+    body[16].append(vrep.simxGetObjectHandle(client_ID,'LElbowYaw3#',vrep.simx_opmode_oneshot_wait)[1])
+    body[17].append(vrep.simxGetObjectHandle(client_ID,'LElbowRoll3#',vrep.simx_opmode_oneshot_wait)[1])
+    body[18].append(vrep.simxGetObjectHandle(client_ID,'LWristYaw3#',vrep.simx_opmode_oneshot_wait)[1])
     #Right Arm
-    Body[19].append(vrep.simxGetObjectHandle(clientID,'RShoulderPitch3#',vrep.simx_opmode_oneshot_wait)[1])
-    Body[20].append(vrep.simxGetObjectHandle(clientID,'RShoulderRoll3#',vrep.simx_opmode_oneshot_wait)[1])
-    Body[21].append(vrep.simxGetObjectHandle(clientID,'RElbowYaw3#',vrep.simx_opmode_oneshot_wait)[1])
-    Body[22].append(vrep.simxGetObjectHandle(clientID,'RElbowRoll3#',vrep.simx_opmode_oneshot_wait)[1])
-    Body[23].append(vrep.simxGetObjectHandle(clientID,'RWristYaw3#',vrep.simx_opmode_oneshot_wait)[1])
+    body[19].append(vrep.simxGetObjectHandle(client_ID,'RShoulderPitch3#',vrep.simx_opmode_oneshot_wait)[1])
+    body[20].append(vrep.simxGetObjectHandle(client_ID,'RShoulderRoll3#',vrep.simx_opmode_oneshot_wait)[1])
+    body[21].append(vrep.simxGetObjectHandle(client_ID,'RElbowYaw3#',vrep.simx_opmode_oneshot_wait)[1])
+    body[22].append(vrep.simxGetObjectHandle(client_ID,'RElbowRoll3#',vrep.simx_opmode_oneshot_wait)[1])
+    body[23].append(vrep.simxGetObjectHandle(client_ID,'RWristYaw3#',vrep.simx_opmode_oneshot_wait)[1])
 
 
 def create_body():
@@ -82,8 +82,8 @@ def create_body():
 
 if __name__ == "__main__":
     vrep.simxFinish(-1)
-    clientID=vrep.simxStart('127.0.0.2',19999,True,True,5000,5)
-    if clientID == -1:
+    client_ID=vrep.simxStart('127.0.0.2',19999,True,True,5000,5)
+    if client_ID == -1:
         print('Connection non successful')
         sys.exit('Could not connect')
     else:
@@ -92,19 +92,17 @@ if __name__ == "__main__":
     naoIP = '127.0.0.1'
     naoPort= 5000
 
-    motionProxy = ALProxy("ALMotion",naoIP, naoPort)
-    postureProxy = ALProxy("ALRobotPosture", naoIP, naoPort)
+    motion_proxy = ALProxy("ALMotion",naoIP, naoPort)
+    posture_proxy = ALProxy("ALRobotPosture", naoIP, naoPort)
 
-    #Go to the posture StandInitZero
     posture = 'StandZero'
-    postureProxy.goToPosture(posture,1.0)
+    posture_proxy.goToPosture(posture,1.0)
 
     
-    Body = create_body()
+    body = create_body()
 
-    get_first_handles(clientID,Body)
-    commandAngles = motionProxy.getAngles('Body', False)
+    get_first_handles(client_ID,body)
     print('READY TO USE')
-    JointControl(clientID,motionProxy,0,Body)
+    JointControl(client_ID,motion_proxy,0,body)
 
     print('End of simulation')

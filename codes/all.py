@@ -9,6 +9,7 @@ from time import sleep
 from vision import getVisionSensor
 from cnn import create_cnn, preprocess_img
 from keras.preprocessing import image
+from error import check_errors
 
 class Movement():
     def __init__(self, adress, port):
@@ -31,13 +32,6 @@ class Movement():
 
     def standInit(self, speed):
         self.posture_proxy.goToPosture("StandInit", speed)
-
-
-def check_errors(errors,fce_name):
-    if errors != 0:
-        print(fce_name + " returned code " + str(errors))
-        return False
-    return True    
 
 
 class ObjectManager():
@@ -93,6 +87,7 @@ def feedCNN(model, deelay, ip, port):
         print("---PREDICTION---")
         print(prediction)
         time.sleep(deelay)
+        #move to prediction simulationusly with running joints manager
 
 
 if __name__ == "__main__":
@@ -118,9 +113,9 @@ if __name__ == "__main__":
     #object_manager.set_position((0,0,0))
     client_ID = vrep.simxStart('127.0.0.1',19999,True,True,5000,5)
     #image = getVisionSensor('NAO_vision1',client_ID)
-    #model = create_cnn()
-    #feedCNN(model,1,'127.0.0.1',5000)
-    preprocess_and_save_img(client_ID, 'NAO_vision1')
+    model = create_cnn()
+    feedCNN(model,1,'127.0.0.1',5000)
+    #preprocess_and_save_img(client_ID, 'NAO_vision1')
 
 
 

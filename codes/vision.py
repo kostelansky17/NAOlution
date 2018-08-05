@@ -3,15 +3,15 @@ import time
 import sys
 from error import check_errors
 
+#format, proces strem? 
 def getVisionSensor(visionSensorName, client_ID):
-    #Get the handle of the vision sensor
     errors, visionSensorHandle=vrep.simxGetObjectHandle(client_ID,visionSensorName,vrep.simx_opmode_oneshot_wait)
     if not check_errors(errors,"get_object_handle"):
         sys.exit()
-    #Get the image
-    errors, resolution,image = vrep.simxGetVisionSensorImage(client_ID,visionSensorHandle,0,vrep.simx_opmode_streaming)
-    #if not check_errors(errors,"get_vision_sensor_image"):
-    #    sys.exit()
+    errors, resolution, image = vrep.simxGetVisionSensorImage(client_ID,visionSensorHandle,0,vrep.simx_opmode_streaming)
+    if not check_errors(errors,"get_vision_sensor_image"):
+        sys.exit()
+    
     return image
     
 if __name__ == '__main__':

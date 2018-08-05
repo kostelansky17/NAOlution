@@ -52,12 +52,10 @@ if __name__ == "__main__":
     img_name = "nao.jpg"
     img = preprocess_img_from_path(img_name)
     
-    cnns = create_list_of_cnn(5)
-
-    for c in cnns:
-        pred = c.predict(img)
-        print("Prediction")
-        print(pred)
+    c = create_cnn()
+    pred = c.predict(img)
+    print("Prediction")
+    print(pred)
 
     
     

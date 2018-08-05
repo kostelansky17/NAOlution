@@ -7,6 +7,7 @@ from PIL import Image as I
 import array
 from time import sleep
 
+#from calass to functions?
 class Movement():
     def __init__(self, adress, port):
         self.address = '127.0.0.1'
