@@ -40,13 +40,6 @@ def preprocess_img_from_path(img_path):
 
     return x
 
-#todo preprocess img form vrepsimx to cnn input
-def preprocess_img(img):
-    x = image.img_to_array(img)
-    x = np.expand_dims(img, axis=0)
-
-    return x
-
 if __name__ == "__main__":
     
     img_name = "nao.jpg"

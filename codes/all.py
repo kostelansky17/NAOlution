@@ -7,9 +7,10 @@ from PIL import Image as I
 import array
 from time import sleep
 from vision import getVisionSensor
-from cnn import create_cnn, preprocess_img
+from cnn import create_cnn
 from keras.preprocessing import image
 from error import check_errors
+from vision import retrive_img_from_vision_senzor, preprocess_sensor_output
 
 class Movement():
     def __init__(self, adress, port):

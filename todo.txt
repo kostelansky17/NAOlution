@@ -1,4 +1,4 @@
-1. output from vision.py/getVisionSensor() transofrm to feed for CNN
+1. --->DONE<--- output from vision.py/getVisionSensor() transofrm to feed for CNN
 2. RUN TWO VREP CLIENTS in the same time or figure out how to run joints mamager while nao is moving
 3. connect NAO's senstors from simulator
 4. create CNN which will combine camera and sensor input
