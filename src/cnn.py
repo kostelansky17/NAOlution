@@ -16,7 +16,8 @@ Creates Convolutional Neural Network with randomly initialized weights
 @return model: keras.model.Sequential
 """
 def create_cnn():
-    input_shape = (128,128,1) #Input shape - image 128x128 pixels in grayscale
+    #Input shape - image 128x128 pixels in grayscale
+    input_shape = (128,128,1) 
     
     model = Sequential()
     model.add(MaxPooling2D((2, 2), input_shape = input_shape))
