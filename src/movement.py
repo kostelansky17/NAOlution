@@ -2,6 +2,7 @@ from naoqi import ALProxy
 
 
 """
+Class able to do selected NAOqi functions
 """
 class Movement():
     """
