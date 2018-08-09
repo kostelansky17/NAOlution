@@ -18,7 +18,7 @@ if __name__ == "__main__":
 	print("MOVE---------------")
 	motionProxy.moveInit()
 
-	motionProxy.moveTo(1, 1, 0.0)
+	motionProxy.moveTo(2, 2, 0.0)
 	print("DONE________________")
 	while True:
 		try:

@@ -1,20 +1,15 @@
 import vrep
 import sys
 
-class Vrep_object():
-	def __init__(self, link, tag):
-		self.link = link
-		self.tag = tag
+def _get_object_handler(component_tag, simx_opmode_blocking):
+	errors, handler = vrep.simxGetObjectHandle(link, str(component_tag), simx_opmode_blocking)
 
-	def _get_object_handler(component_tag, simx_opmode_blocking):
-		errors, handler = vrep.simxGetObjectHandle(self.link, str(component_tag), simx_opmode_blocking)
+	return handler
 
-		return handler
-
-	def get_orientation():
-		handler = vrep.simxGetObjectHandle(self.link, "NAO", 0x01000)
-		errors, orientation = vrep.simxGetObjectOrientation(self.link, handler, -1, simx_opmode_streaming)
-		return orientation
+def get_orientation():
+	handler = vrep.simxGetObjectHandle(link, "NAO", 0x01000)
+	errors, orientation = vrep.simxGetObjectOrientation(link, handler, -1, simx_opmode_streaming)
+	return orientation
 
 if __name__ == "__main__":
 	link = vrep.simxStart('127.0.0.2',19999,True,True,5000,5)
