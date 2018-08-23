@@ -52,3 +52,6 @@ class Movement():
     """
     def standInit(self, speed):
         self.posture_proxy.goToPosture("StandInit", speed)
+
+    def standZero(self, speed):
+        self.posture_proxy.goToPosture("StandZero",speed)

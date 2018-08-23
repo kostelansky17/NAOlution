@@ -56,6 +56,27 @@ def preprocess_sensor_output(img):
     return img
 
 
+def sensor_output_to_model_input(resolution, sensor_img):
+    image_byte_array = array.array('b',sensor_img)
+    img = pil_image.frombuffer("RGB", (resolution[0],resolution[1]), 
+                               image_byte_array, "raw", "RGB", 0, 1)
+    rotated_img = img.rotate(180)
+    resized_img = rotated_img.resize(((128,128)))
+    grayscale_img = resized_img.convert('L')
+    array_img = keras_image.img_to_array(grayscale_img)
+    img = np.expand_dims(array_img, axis=0)
+
+    return img
+
+
+def rescale_model_output(output):
+    rescaled = []
+    rescaled.append(output[0])
+    rescaled.append(output[1])
+
+    return rescaled
+        
+
 """
 Functionality testing created while developent
 """

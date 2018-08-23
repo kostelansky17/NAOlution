@@ -1,5 +1,7 @@
 import vrep
 import sys
+import consts
+import simulation
 from naoqi import ALProxy
 from checker import check_client_ID
 
@@ -12,39 +14,47 @@ Streams moving of NAO's joints from Choreographe to V-REP
 @param body: NAO's body created by create_body()
 """
 def joints_control(client_ID, motion_proxy, body):
-    while(vrep.simxGetConnectionId(client_ID) != -1):
-        #Getting joint's angles from Choregraphe
-        commandAngles = motion_proxy.getAngles('Body', False)
-        #Head
-        vrep.simxSetJointTargetPosition(client_ID, body[0][0], commandAngles[0], vrep.simx_opmode_streaming)
-        vrep.simxSetJointTargetPosition(client_ID, body[1][0], commandAngles[1], vrep.simx_opmode_streaming)
-        #Left Leg
-        vrep.simxSetJointTargetPosition(client_ID, body[2][0], commandAngles[8], vrep.simx_opmode_streaming)
-        vrep.simxSetJointTargetPosition(client_ID, body[3][0], commandAngles[9], vrep.simx_opmode_streaming)
-        vrep.simxSetJointTargetPosition(client_ID, body[4][0], commandAngles[10], vrep.simx_opmode_streaming)
-        vrep.simxSetJointTargetPosition(client_ID, body[5][0], commandAngles[11], vrep.simx_opmode_streaming)
-        vrep.simxSetJointTargetPosition(client_ID, body[6][0], commandAngles[12], vrep.simx_opmode_streaming)
-        vrep.simxSetJointTargetPosition(client_ID, body[7][0], commandAngles[13], vrep.simx_opmode_streaming)
-        #Right Leg
-        vrep.simxSetJointTargetPosition(client_ID, body[8][0], commandAngles[14], vrep.simx_opmode_streaming)
-        vrep.simxSetJointTargetPosition(client_ID, body[9][0], commandAngles[15], vrep.simx_opmode_streaming)
-        vrep.simxSetJointTargetPosition(client_ID, body[10][0], commandAngles[16], vrep.simx_opmode_streaming)
-        vrep.simxSetJointTargetPosition(client_ID, body[11][0], commandAngles[17], vrep.simx_opmode_streaming)
-        vrep.simxSetJointTargetPosition(client_ID, body[12][0], commandAngles[18], vrep.simx_opmode_streaming)
-        vrep.simxSetJointTargetPosition(client_ID, body[13][0], commandAngles[19], vrep.simx_opmode_streaming)
-        #Left Arm
-        vrep.simxSetJointTargetPosition(client_ID, body[14][0], commandAngles[2], vrep.simx_opmode_streaming)
-        vrep.simxSetJointTargetPosition(client_ID, body[15][0], commandAngles[3], vrep.simx_opmode_streaming)
-        vrep.simxSetJointTargetPosition(client_ID, body[16][0], commandAngles[4], vrep.simx_opmode_streaming)
-        vrep.simxSetJointTargetPosition(client_ID, body[17][0], commandAngles[5], vrep.simx_opmode_streaming)
-        vrep.simxSetJointTargetPosition(client_ID, body[18][0], commandAngles[6], vrep.simx_opmode_streaming)
-        #Right Arm
-        vrep.simxSetJointTargetPosition(client_ID, body[19][0], commandAngles[20], vrep.simx_opmode_streaming)
-        vrep.simxSetJointTargetPosition(client_ID, body[20][0], commandAngles[21], vrep.simx_opmode_streaming)
-        vrep.simxSetJointTargetPosition(client_ID, body[21][0], commandAngles[22], vrep.simx_opmode_streaming)
-        vrep.simxSetJointTargetPosition(client_ID, body[22][0], commandAngles[23], vrep.simx_opmode_streaming)
-        vrep.simxSetJointTargetPosition(client_ID, body[23][0], commandAngles[24], vrep.simx_opmode_streaming)
-
+    while( True ):
+        try:
+            if( vrep.simxGetConnectionId(client_ID) == -1 ):
+                vrep.simxFinish(client_ID)
+                client_ID = vrep.simxStart(consts.vrep_ip_1,consts.vrep_port_1, True, True, 5000, 5)
+                get_first_handles(client_ID, body)
+            else:
+                #Getting joint's angles from Choregraphe
+                commandAngles = motion_proxy.getAngles('Body', False)
+                #Head
+                vrep.simxSetJointTargetPosition(client_ID, body[0][0], commandAngles[0], vrep.simx_opmode_streaming)
+                vrep.simxSetJointTargetPosition(client_ID, body[1][0], commandAngles[1], vrep.simx_opmode_streaming)
+                #Left Leg
+                vrep.simxSetJointTargetPosition(client_ID, body[2][0], commandAngles[8], vrep.simx_opmode_streaming)
+                vrep.simxSetJointTargetPosition(client_ID, body[3][0], commandAngles[9], vrep.simx_opmode_streaming)
+                vrep.simxSetJointTargetPosition(client_ID, body[4][0], commandAngles[10], vrep.simx_opmode_streaming)
+                vrep.simxSetJointTargetPosition(client_ID, body[5][0], commandAngles[11], vrep.simx_opmode_streaming)
+                vrep.simxSetJointTargetPosition(client_ID, body[6][0], commandAngles[12], vrep.simx_opmode_streaming)
+                vrep.simxSetJointTargetPosition(client_ID, body[7][0], commandAngles[13], vrep.simx_opmode_streaming)
+                #Right Leg
+                vrep.simxSetJointTargetPosition(client_ID, body[8][0], commandAngles[14], vrep.simx_opmode_streaming)
+                vrep.simxSetJointTargetPosition(client_ID, body[9][0], commandAngles[15], vrep.simx_opmode_streaming)
+                vrep.simxSetJointTargetPosition(client_ID, body[10][0], commandAngles[16], vrep.simx_opmode_streaming)
+                vrep.simxSetJointTargetPosition(client_ID, body[11][0], commandAngles[17], vrep.simx_opmode_streaming)
+                vrep.simxSetJointTargetPosition(client_ID, body[12][0], commandAngles[18], vrep.simx_opmode_streaming)
+                vrep.simxSetJointTargetPosition(client_ID, body[13][0], commandAngles[19], vrep.simx_opmode_streaming)
+                #Left Arm
+                vrep.simxSetJointTargetPosition(client_ID, body[14][0], commandAngles[2], vrep.simx_opmode_streaming)
+                vrep.simxSetJointTargetPosition(client_ID, body[15][0], commandAngles[3], vrep.simx_opmode_streaming)
+                vrep.simxSetJointTargetPosition(client_ID, body[16][0], commandAngles[4], vrep.simx_opmode_streaming)
+                vrep.simxSetJointTargetPosition(client_ID, body[17][0], commandAngles[5], vrep.simx_opmode_streaming)
+                vrep.simxSetJointTargetPosition(client_ID, body[18][0], commandAngles[6], vrep.simx_opmode_streaming)
+                #Right Arm
+                vrep.simxSetJointTargetPosition(client_ID, body[19][0], commandAngles[20], vrep.simx_opmode_streaming)
+                vrep.simxSetJointTargetPosition(client_ID, body[20][0], commandAngles[21], vrep.simx_opmode_streaming)
+                vrep.simxSetJointTargetPosition(client_ID, body[21][0], commandAngles[22], vrep.simx_opmode_streaming)
+                vrep.simxSetJointTargetPosition(client_ID, body[22][0], commandAngles[23], vrep.simx_opmode_streaming)
+                vrep.simxSetJointTargetPosition(client_ID, body[23][0], commandAngles[24], vrep.simx_opmode_streaming)
+        except KeyboardInterrupt:
+            vrep.simxFinish(client_ID)
+            break
 
 """
 Streams moving of NAO's joints from Choreographe to V-REP
@@ -115,16 +125,12 @@ Connects to V-REP and starts connection between Choreographe and V-REP
 """
 if __name__ == "__main__":
     vrep.simxFinish(-1)
-    client_ID = vrep.simxStart("127.0.0.1",19999, True, True, 5000, 5)
-    
-    if not check_client_ID(client_ID):
-        sys.exit()
-
+    client_ID = simulation.start_connection(consts.vrep_ip_1,consts.vrep_port_1)
     nao_IP = "127.0.0.1"
     nao_port= 5000
 
-    motion_proxy = ALProxy("ALMotion",nao_IP, nao_port)
-    posture_proxy = ALProxy("ALRobotPosture", nao_IP, nao_port)
+    motion_proxy = ALProxy("ALMotion", consts.naoqi_bin_ip, consts.naoqi_bin_port)
+    posture_proxy = ALProxy("ALRobotPosture", consts.naoqi_bin_ip, consts.naoqi_bin_port)
 
     posture_proxy.goToPosture("StandZero",1.0)
 

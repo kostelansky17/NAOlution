@@ -43,3 +43,12 @@ def stop_simulation(client_ID):
 
     if not check_return_code(return_code, "simxStartSimulation"):
         sys.exit()
+
+
+"""
+Stops connection to V-REP server
+
+@param client_ID: int
+"""
+def stop_connection(client_ID):
+    vrep.simxFinish(client_ID)

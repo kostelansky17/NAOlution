@@ -5,3 +5,5 @@
 4. create CNN which will combine camera and sensor input
 5. how to combine CNNs in genetic algorithm
 6. run run run
+7. add dylib filed
+8. create more simalations
