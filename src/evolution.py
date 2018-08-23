@@ -56,11 +56,17 @@ class Evolution():
 
         return new_population
 
+    def _evaluate_individual(self, run_time, distance_from_target, nao_orientation):
+        fail_penalty = 0
+        if self._nao_failed(nao_orientation):
+            fail_penalty = 50
+        return 100 - run_time - distance_from_target - fail_penalty
+
     def _run_simulation(self, model_number):
         client_ID = simulation.start_connection(consts.vrep_ip_2, consts.vrep_port_2)
         simulation.start_simulation(client_ID)
 
-        model = self.population[model_number]
+        model = self.population[model_number].model
         
         nao_handle = object.get_object_handle(client_ID, consts.nao)
         target_handle = object.get_object_handle(client_ID, consts.target)
@@ -71,8 +77,9 @@ class Evolution():
         
         time.sleep(1) #mandatory sleep, WON'T WORK without it      
 
-        target_position =  object.get_position(client_ID, target_handle)
-
+        nao_position = object.get_position(client_ID, nao_handle)
+        target_position = object.get_position(client_ID, target_handle)
+        start_time = time.time()
 
         while True:
             nao_position = object.get_position(client_ID, nao_handle)
@@ -83,6 +90,14 @@ class Evolution():
     
             model_input = vision.sensor_output_to_model_input(resolution, sensor_img)
             results = model.predict(model_input)
+            
+
+        end_time = time.time()
+        distance_from_target = self._distance_from_taget(target_position, nao_position)
+
+        self.population[model_number].rank = self._evaluate_individual(end_time -  start_time, 
+                                                                       distance_from_target,
+                                                                       nao_orientation)
 
         simulation.stop_simulation(client_ID)
         simulation.stop_connection(client_ID)
