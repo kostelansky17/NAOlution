@@ -3,7 +3,7 @@ import numpy as np
 import tensorflow as tf
 from keras import backend as K
 from keras.models import Sequential
-from keras.preprocessing import keras_image
+from keras.preprocessing import image as keras_image
 from keras.activations import relu, tanh
 from keras.initializers import random_normal
 from keras.layers.core import Dense, Flatten, Dropout

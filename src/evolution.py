@@ -78,20 +78,23 @@ class Evolution():
         time.sleep(1) #mandatory sleep, WON'T WORK without it      
 
         nao_position = object.get_position(client_ID, nao_handle)
+        nao_orientation = object.get_orientation(client_ID, nao_handle)
         target_position = object.get_position(client_ID, target_handle)
         start_time = time.time()
-
+        '''
         while True:
-            nao_position = object.get_position(client_ID, nao_handle)
-            nao_orientation = object.get_orientation(client_ID, nao_handle)
-            return_code, resolution, sensor_img = vrep.simxGetVisionSensorImage(client_ID, vision_handle,
-                                                                                0, vrep.simx_opmode_buffer)
+        '''
+        nao_position = object.get_position(client_ID, nao_handle)
+        nao_orientation = object.get_orientation(client_ID, nao_handle)
+        return_code, resolution, sensor_img = vrep.simxGetVisionSensorImage(client_ID, vision_handle,
+                                                                            0, vrep.simx_opmode_buffer)
 
-    
-            model_input = vision.sensor_output_to_model_input(resolution, sensor_img)
-            results = model.predict(model_input)
-            
 
+        model_input = vision.sensor_output_to_model_input(resolution, sensor_img)
+        results = model.predict(model_input)
+        print(results)
+        print(type(results))
+        
         end_time = time.time()
         distance_from_target = self._distance_from_taget(target_position, nao_position)
 
@@ -105,10 +108,12 @@ class Evolution():
 
     def _run_epoch(self):
         for i in range(self.population_size):
+            print("Individual number: " + str(i))
             self._run_simulation(i)
 
     def start_evolution(self):       
         for i in range(self.populations_number):
+            print("Population number: " + str(i))
             self._run_epoch()
 
     def _distance_from_taget(self, nao_position, target_position):
@@ -123,3 +128,10 @@ class Evolution():
             
             return abs(nao_orientation[0]) > .9 * np.pi / 2
 
+
+"""
+Functionality testing created while developent
+"""
+if __name__ == "__main__":
+    ev = Evolution(2, 2, 1)
+    ev.start_evolution()
