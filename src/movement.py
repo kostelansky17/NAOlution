@@ -55,3 +55,4 @@ class Movement():
 
     def standZero(self, speed):
         self.posture_proxy.goToPosture("StandZero",speed)
+        

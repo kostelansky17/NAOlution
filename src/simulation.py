@@ -52,3 +52,52 @@ Stops connection to V-REP server
 """
 def stop_connection(client_ID):
     vrep.simxFinish(client_ID)
+
+
+"""
+Loads V-REP scene
+
+@param client_ID: int
+"""
+def load_scene(client_ID, scene):
+    return_code = vrep.simxLoadScene(client_ID, scene, 0xFF,vrep.simx_opmode_blocking)
+
+
+"""
+Closes V-REP scene
+
+@param client_ID: int
+"""
+def close_scene(client_ID):
+    return_code = vrep.simxCloseScene(client_ID, vrep.simx_opmode_blocking)
+
+
+"""
+Gets vision sensor image, mode buffer
+
+@param client_ID: int
+@vision_handle: vision sensor handle
+
+@return resolution: image resolution
+@return sensor_img: image
+"""
+def get_vision_sensor_image_str(client_ID, vision_handle):
+    return_code, resolution, sensor_img = vrep.simxGetVisionSensorImage(client_ID, vision_handle, 0, 
+                                                                        vrep.simx_opmode_streaming)
+  
+    return resolution, sensor_img
+
+
+"""
+Gets vision sensor image, mode buffer
+
+@param client_ID: int
+@vision_handle: vision sensor handle
+
+@return resolution: image resolution
+@return sensor_img: image
+"""
+def get_vision_sensor_image_buff(client_ID, vision_handle):
+    return_code, resolution, sensor_img = vrep.simxGetVisionSensorImage(client_ID, vision_handle, 0, 
+                                                                        vrep.simx_opmode_buffer)
+    return resolution, sensor_img

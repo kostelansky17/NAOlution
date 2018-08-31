@@ -8,7 +8,9 @@ from movement import Movement
 import consts
 import vrep
 
-
+"""
+testing file
+"""
 if __name__ == "__main__":
 	mov = Movement(consts.naoqi_bin_ip, consts.naoqi_bin_port)
 	
