@@ -1,6 +1,5 @@
 import sys
 from naoqi import ALProxy
-import argparse
 import time
 import random
 import simulation

@@ -9,5 +9,5 @@
 8. examples
 9. readme
 10. git hub page
-11. video
+11. video + images + logos
 12. pipenv?

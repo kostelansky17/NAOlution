@@ -1,6 +1,4 @@
-import array
 import numpy as np
-import tensorflow as tf
 from keras import backend as K
 from keras import layers
 from keras.models import Sequential

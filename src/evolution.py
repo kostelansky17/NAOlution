@@ -2,7 +2,6 @@ import cnn
 import random
 import simulation
 import consts
-import time
 import object_manager
 import vrep
 import vision
@@ -10,6 +9,7 @@ import numpy as np
 from movement import Movement
 import logging
 import datetime
+import time
 
 
 class Individual():
@@ -88,7 +88,7 @@ class Evolution():
         new_population = []
         self.population.sort(key=lambda x: x.rank, reverse=True)
         population_select = int(self.population_size * 0.3)
-        if population_number % 10 == 0:
+        if population_number % 5 == 0:
             self._save_models()
 
         for _ in range(self.population_size):
@@ -243,6 +243,6 @@ class Evolution():
 Functionality testing created while developent
 """
 if __name__ == "__main__":
-    ev = Evolution(70, 100, 300, 17, consts.scenes)
+    ev = Evolution(3, 100, 300, 17, consts.scenes)
     ev.start_evolution()
 
