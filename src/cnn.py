@@ -1,13 +1,13 @@
-import array
 import numpy as np
-import tensorflow as tf
 from keras import backend as K
+from keras import layers
 from keras.models import Sequential
 from keras.preprocessing import image as keras_image
 from keras.activations import relu, tanh
 from keras.initializers import random_normal
 from keras.layers.core import Dense, Flatten, Dropout
 from keras.layers.convolutional import Conv2D, MaxPooling2D
+from sklearn.utils import shuffle
 
 
 """
@@ -67,17 +67,70 @@ def preprocess_img_from_path(img_path):
 
 
 """
+Creates dummmy Convolutional Neural Network with randomly initialized weights
+
+@return model: keras.model.Sequential
+"""
+def create_dummy_model():
+    input_shape = (128,128,1) 
+    
+    model = Sequential()
+    model.add(MaxPooling2D((2, 2), input_shape = input_shape))
+    model.add(Conv2D(1, (2, 2), kernel_initializer= 'random_normal', bias_initializer='random_normal'))
+    model.add(Flatten())
+    model.add(Dense(2, activation = relu, kernel_initializer= 'random_normal', bias_initializer='random_normal'))
+
+    return model
+
+
+"""
+Crossing two Keras sequential models
+
+@param model_A: First model
+@param model_B: Second model
+
+@return img: image in desired shape
+"""
+def mix_two_models(model_A, model_B):
+    model_C = create_cnn()
+
+    for layer_A, layer_B, layer_C in zip(model_A.layers, model_B.layers, model_C.layers):
+        new_layer = list()
+        for array_A, array_B in zip(layer_A.get_weights(), layer_B.get_weights()):
+            choice = np.random.randint(2, size = array_A.size).reshape(array_A.shape).astype(bool)
+            array_C = np.where(choice, array_A, array_B)
+            new_layer.append(array_C)
+        
+        layer_C.set_weights(new_layer)
+    
+    return model_C
+
+
+"""
 Functionality testing created while developent
 """
 if __name__ == "__main__":
+    individual_A = create_cnn()
+    individual_B = create_cnn()
+    individual_C = create_cnn()
     
-    img_name = "nao.jpg"
-    img = preprocess_img_from_path(img_name)
-    
-    c = create_cnn()
-    pred = c.predict(img)
-    print("Prediction")
-    print(pred)
-
-    
-    
+    for layer_A, layer_B, layer_C in zip(individual_A.layers, individual_B.layers, individual_C.layers):
+        print("LAYER:")
+        print(layer_A.get_weights())
+        print(type(layer_A.get_weights()))
+        ml = list()
+        for array_A, array_B in zip(layer_A.get_weights(), layer_B.get_weights()):
+            print("ARR_A")
+            print(array_A)
+            print(array_A.shape)
+            print("ARR_B")
+            print(array_B)
+            print(array_B.shape)
+            choice = np.random.randint(2, size = array_A.size).reshape(array_A.shape).astype(bool)
+            res = np.where(choice, array_A, array_B)
+            print("SSSS")
+            print(res)
+            print(res.shape)
+            ml.append(res)
+        
+        layer_C.set_weights(ml)

@@ -139,4 +139,4 @@ if __name__ == "__main__":
     
     print("Joints manager is ready.")
     joints_control(client_ID,motion_proxy,body)
-    print("End of the simalion.")
+    print("End of the simulation.")

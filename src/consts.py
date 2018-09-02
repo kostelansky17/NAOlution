@@ -1,3 +1,7 @@
+"""
+file with constants used accross project
+"""
+
 naoqi_bin_ip = "127.0.0.1"
 naoqi_bin_port = 5000
 
@@ -13,3 +17,4 @@ nao_vision_2 = "NAO_vision2"
 nao = "NAO"
 target = "indoorPlant"
 
+scenes = ["../scenes/NAO1.ttt", "../scenes/NAO2.ttt", "../scenes/NAO3.ttt"]

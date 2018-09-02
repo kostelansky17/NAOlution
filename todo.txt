@@ -3,6 +3,11 @@
 --->DONE<--- TWO VREP CLIENTS in the same time or figure out how to run joints mamager while nao is moving
 ->POSTPONED<- 3. crate & connect NAO's senstors from simulator
 ->POSTPONED<- 4. create CNN which will combine camera and sensor input
-5. how to combine CNNs in genetic algorithm
+--->DONE<--- how to combine CNNs in genetic algorithm
 6. run run run
-8. create more simalations
+--->DONE<---  create more simalations
+8. examples
+9. readme
+10. git hub page
+11. video + images + logos
+12. pipenv?
