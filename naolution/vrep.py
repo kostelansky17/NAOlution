@@ -33,6 +33,7 @@ from vrepConst import *
 
 #load library
 libsimx = None
+
 try:
     if platform.system() =='Windows':
         libsimx = CDLL("./remoteApi.dll") 

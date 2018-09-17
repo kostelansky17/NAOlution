@@ -1,9 +1,9 @@
-import vrep
+from naolution import vrep
+from naolution.consts import VREP_IP_1, VREP_PORT_1, NAOQI_BIN_IP, NAOQI_BIN_PORT
 import sys
-import consts
-import simulation
+from naolution.managers import simulation_manager as simulation
 from naoqi import ALProxy
-from checker import check_client_ID
+from naolution.utils.checker import check_client_ID
 
 
 """
@@ -18,7 +18,7 @@ def joints_control(client_ID, motion_proxy, body):
         try:
             if( vrep.simxGetConnectionId(client_ID) == -1 ):
                 vrep.simxFinish(client_ID)
-                client_ID = vrep.simxStart(consts.vrep_ip_1,consts.vrep_port_1, True, True, 5000, 5)
+                client_ID = vrep.simxStart(VREP_IP_1, VREP_PORT_1, True, True, 5000, 5)
                 get_first_handles(client_ID, body)
             else:
                 #Getting joint's angles from Choregraphe
@@ -125,12 +125,10 @@ Connects to V-REP and starts connection between Choreographe and V-REP
 """
 if __name__ == "__main__":
     vrep.simxFinish(-1)
-    client_ID = simulation.start_connection(consts.vrep_ip_1,consts.vrep_port_1)
-    nao_IP = "127.0.0.1"
-    nao_port= 5000
+    client_ID = simulation.start_connection(VREP_IP_1, VREP_PORT_1)
 
-    motion_proxy = ALProxy("ALMotion", consts.naoqi_bin_ip, consts.naoqi_bin_port)
-    posture_proxy = ALProxy("ALRobotPosture", consts.naoqi_bin_ip, consts.naoqi_bin_port)
+    motion_proxy = ALProxy("ALMotion", NAOQI_BIN_IP, NAOQI_BIN_PORT)
+    posture_proxy = ALProxy("ALRobotPosture", NAOQI_BIN_IP, NAOQI_BIN_PORT)
 
     posture_proxy.goToPosture("StandZero",1.0)
 

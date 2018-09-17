@@ -1,4 +1,4 @@
-import vrep
+from naolution import vrep
 import sys
 
 def _get_object_handler(component_tag, simx_opmode_blocking):

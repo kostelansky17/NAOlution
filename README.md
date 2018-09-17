@@ -7,8 +7,8 @@ The project composes from three main parts:
  - Evolution which is genetic algorithm running real-time in V-REP created for training CNNs
  - CNN which creates used Convolutional neural networks
 
-## Pipenv
-Virtual environment is installed by command pipenv install
+## Instalation
+This project is written in `Python 2.7` becouse of dependecis also written in `Python 2`. Virtual environment is installed by command ``pipenv install`` in directory `NAOlution`. You need to install V-REP simulator (version 3.4 ADD LINK TO DOWNLOAD) and NAOqi (used version 2.14... ADDLINK TO DOWNLOAD).   
 
 ## Project Structure
   ---scenes: used V-REP scenes
@@ -16,11 +16,16 @@ Virtual environment is installed by command pipenv install
   ---src/logs: every run of evolution creates own logs file
   ---src/models: contains models from evolution
 
+## How to find V-REP and NAOqi IP & ports
+TODO!
+
 
 ## Usage and exapmles
 
 ### To Use NAOqi framework for NAO in V-REP
-- First of all you need to change ip adresses and ports in src/consts.py. 
-- Open V-REP load and run the simulation
-- run naoqi
+ First of all you need to change ip adresses and ports in src/consts.py. Especially `vrep_ip_1` and `vrep_port_2`. 
+ - Open V-REP load and run the simulation
+ - Next you need to run `joints_manager.py`.
+ - When is joints manager ready you can connect to NAO in NAOqi and use commands from NAOqi API. Expamle is in TODOOOOO!!!!.
 
+### Run genetic algorithm

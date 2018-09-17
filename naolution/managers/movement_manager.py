@@ -14,7 +14,8 @@ class Movement():
     def __init__(self, adress, port):
         self.address = adress
         self.port = port
-        self.posture_proxy = ALProxy("ALRobotPosture", self.address, self.port)               
+        self.posture_proxy = ALProxy("ALRobotPosture", self.address, self.port) 
+        self.motion_proxy = ALProxy("ALMotion", self.address, self.port)             
 
     """
     Initializes motion proxy

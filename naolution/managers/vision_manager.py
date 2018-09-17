@@ -1,12 +1,12 @@
-import vrep
+from naolution import vrep
 import time
 import sys
 import array
 import numpy as np
 from PIL import Image as pil_image
 from keras.preprocessing import image as keras_image
-from cnn import create_cnn, preprocess_img_from_path
-from checker import check_return_code, check_client_ID
+from naolution.utils.cnn import create_cnn, preprocess_img_from_path
+from naolution.utils.checker import check_return_code, check_client_ID
 
 
 """

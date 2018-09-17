@@ -1,12 +1,13 @@
-import cnn
+from naolution.utils import cnn
 import random
-import simulation
-import consts
-import object_manager
+from naolution.managers import simulation_manager as simulation
+from consts import NAO, TARGET, NAO_VISION_1, VREP_IP_2, VREP_PORT_2, \
+                   NAOQI_BIN_IP, NAOQI_BIN_PORT, SCENES_SET_1
+from naolution.managers import object_manager
 import vrep
-import vision
+from naolution.managers import vision_manager as vision
 import numpy as np
-from movement import Movement
+from naolution.managers.movement_manager import Movement
 import logging
 import datetime
 import time
@@ -19,9 +20,9 @@ class Individual():
     @param model: Convolutional neural network
     @param rank: rank of the Individual
     """
-    def __init__(self, model, rank):
+    def __init__(self, model):
         self.model = model
-        self.rank = rank
+        self.rank = 0
 
 
 class Evolution():
@@ -32,17 +33,15 @@ class Evolution():
     @param populations_number: int (number of populations)
     """
     def __init__(self, population_size, populations_number,
-                 individual_max_rank, scene_timeout, scenes):
+                 scene_timeout, scenes):
         self.population_size = population_size
         self.populations_number = populations_number
-        self.individual_max_rank = individual_max_rank
         self.scene_timeout = scene_timeout
         self.scenes = scenes
         self.population = self._create_initial_population()
-        logging.basicConfig(filename='./logs/evolution_' +
+        logging.basicConfig(filename='../logs/evolution_' +
                             datetime.datetime.now().strftime("%y-%m-%d_%H:%M")
                             + '.log',level=logging.INFO)
-        
 
     """
     Select Individual from population for crossing
@@ -68,15 +67,15 @@ class Evolution():
         models = cnn.create_list_cnn(self.population_size)
 
         for model in models:
-            individual = Individual(model, self.individual_max_rank)
+            individual = Individual(model)
             population.append(individual)
 
         return population
 
 
     def _save_models(self):
-        for i in range(0, int(self.population_size/2)):
-            self.population[i].model.save("./models/model_" + str(i) + ".h5")
+        for i in range(0, int(self.population_size/10)):
+            self.population[i].model.save("../models/model_" + str(i) + ".h5")
 
 
     """
@@ -88,8 +87,6 @@ class Evolution():
         new_population = []
         self.population.sort(key=lambda x: x.rank, reverse=True)
         population_select = int(self.population_size * 0.3)
-        if population_number % 5 == 0:
-            self._save_models()
 
         for _ in range(self.population_size):
             rand_A = self._select_individual(population_select)
@@ -98,7 +95,7 @@ class Evolution():
             new_model = cnn.mix_two_models(self.population[rand_A].model,
                                            self.population[rand_B].model)
 
-            new_individual = Individual(new_model, self.individual_max_rank)
+            new_individual = Individual(new_model)
             new_population.append(new_individual)
 
         return new_population
@@ -156,9 +153,9 @@ class Evolution():
 
         model = self.population[model_number].model
         
-        nao_handle = object_manager.get_object_handle(client_ID, consts.nao)
-        target_handle = object_manager.get_object_handle(client_ID, consts.target)
-        vision_handle = object_manager.get_vison_sensor_handle(client_ID, consts.nao_vision_1)
+        nao_handle = object_manager.get_object_handle(client_ID, NAO)
+        target_handle = object_manager.get_object_handle(client_ID, TARGET)
+        vision_handle = object_manager.get_vison_sensor_handle(client_ID, NAO_VISION_1)
         resolution, sensor_img = simulation.get_vision_sensor_image_str(client_ID, vision_handle)
 
         time.sleep(1) #mandatory sleep, WON'T WORK without it      
@@ -214,9 +211,9 @@ class Evolution():
     Runs epoch - every individual in generation
     """
     def _run_epoch(self, population_number):
-        client_ID = simulation.start_connection(consts.vrep_ip_2, 
-                                                consts.vrep_port_2)
-        movement = Movement(consts.naoqi_bin_ip, consts.naoqi_bin_port)
+        client_ID = simulation.start_connection(VREP_IP_2, 
+                                                VREP_PORT_2)
+        movement = Movement(NAOQI_BIN_IP, NAOQI_BIN_PORT)
         
         for i in range(self.population_size):
             logging.info("INDIVIDUAL NUMBER: " + str(i))
@@ -237,12 +234,14 @@ class Evolution():
             logging.info("POPULATION NUMBER: " + str(i))
             print("POPULATION NUMBER: " + str(i))
             self._run_epoch(i)
+        
+        self._save_models()
 
 
 """
 Functionality testing created while developent
 """
 if __name__ == "__main__":
-    ev = Evolution(3, 100, 300, 17, consts.scenes)
+    SCENES = ["../scenes/NAO_CLASS_1.ttt"]
+    ev = Evolution(2, 50, 17, SCENES)
     ev.start_evolution()
-
