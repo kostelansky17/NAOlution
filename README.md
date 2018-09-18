@@ -13,7 +13,7 @@ The project composes from three main parts:
 ---
 
 ## Project Structure
-```python
+```
 naolution
 │   README.md
 │   requriments.txt    
@@ -97,6 +97,10 @@ in directory `NAOlution`.
 Accessable NAOqi IPs and ports are usually shown when is `NAOqi-bin` started.
 
 ### V-REP
+#### Linux
+Accessable V-REP ports can be listed by command:
+```bash
+```
 
 ---
 
