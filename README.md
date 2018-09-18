@@ -6,6 +6,8 @@ The project composes from three main parts:
  - Evolution which is genetic algorithm running real-time in V-REP created for training CNNs
  - CNN which creates used Convolutional neural networks and cross them over during the evolution
 
+![Image of Yaktocat](https://raw.githubusercontent.com/kostelansky17/NAOlution/master/images/nao.png?token=AfsFPetyS7r3ied4GC9qcFI_va7QitJOks5bqrAHwA%3D%3D)
+
 ---
 
 ## How does it work?
