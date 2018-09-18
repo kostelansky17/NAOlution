@@ -9,6 +9,7 @@ The project composes from three main parts:
 ---
 
 ## How does it work?
+![Image of Yaktocat](https://raw.githubusercontent.com/kostelansky17/NAOlution/master/images/architecture.png?token=AfsFPeAyofM0euAbLWnBqpuFLC9UgVAoks5bqqwWwA%3D%3D)
 
 ---
 
