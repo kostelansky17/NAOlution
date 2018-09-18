@@ -4,7 +4,7 @@ from naolution.managers import simulation_manager as simulation
 from consts import NAO, TARGET, NAO_VISION_1, VREP_IP_2, VREP_PORT_2, \
                    NAOQI_BIN_IP, NAOQI_BIN_PORT, SCENES_SET_1
 from naolution.managers import object_manager
-import vrep
+from naolution.vrep import vrep
 from naolution.managers import vision_manager as vision
 import numpy as np
 from naolution.managers.movement_manager import Movement
@@ -243,5 +243,5 @@ Functionality testing created while developent
 """
 if __name__ == "__main__":
     SCENES = ["../scenes/NAO_CLASS_1.ttt"]
-    ev = Evolution(2, 50, 17, SCENES)
+    ev = Evolution(40, 50, 17, SCENES)
     ev.start_evolution()

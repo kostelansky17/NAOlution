@@ -1,5 +1,5 @@
 import sys
-from naolution import vrep
+from naolution.vrep import vrep
 from naolution.utils.checker import check_return_code
 
 simx_opmode_blocking = 0x010000

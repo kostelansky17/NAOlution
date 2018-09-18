@@ -6,5 +6,5 @@ if __name__ == "__main__":
     scene_timeout = 10
     scenes = ["../scenes/NAO1.ttt", "../scenes/NAO2.ttt", "../scenes/NAO3.ttt"]
 
-    my_evolution = Evolution(population_size, population_number, scene_timeout,scenes)
+    my_evolution = Evolution(population_size, population_number, scene_timeout, scenes)
     my_evolution.start_evolution()

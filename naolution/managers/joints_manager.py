@@ -1,4 +1,4 @@
-from naolution import vrep
+from naolution.vrep import vrep
 from naolution.consts import VREP_IP_1, VREP_PORT_1, NAOQI_BIN_IP, NAOQI_BIN_PORT
 import sys
 from naolution.managers import simulation_manager as simulation

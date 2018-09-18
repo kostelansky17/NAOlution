@@ -1,4 +1,4 @@
-from naolution import vrep
+from naolution.vrep import vrep
 import time
 import sys
 import array

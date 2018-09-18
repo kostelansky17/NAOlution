@@ -1,0 +1,6 @@
+sklearn = "*"
+numpy = "*"
+datetime = "*"
+pillow = "*"
+theano = "*"
+Keras = "==2.1.6"

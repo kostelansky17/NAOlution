@@ -28,19 +28,41 @@
 
 import platform
 import struct
+import os
+import glob
 from ctypes import *
 from vrepConst import *
 
 #load library
 libsimx = None
 
-try:
+def create_linux_path():
+    files = glob.glob('remoteApi.so')
+    if not files:
+        path = "../vrep/"
+    else:
+        path = "./"
+
+    return path
+
+def create_mac_path():
+    files = glob.glob('remoteApi.dylib')
+    if not files:
+        path = "../vrep/"
+    else:
+        path = "./"
+
+    return path
+
+try:   
     if platform.system() =='Windows':
         libsimx = CDLL("./remoteApi.dll") 
     elif platform.system() == 'Darwin':
+        path = create_linux_path() + "remoteApi.dylib"
         libsimx = CDLL("./remoteApi.dylib")
     else:
-        libsimx = CDLL("./remoteApi.so")
+        path = create_linux_path() + "remoteApi.so"
+        libsimx = CDLL(path)
 except:
     print ('----------------------------------------------------')
     print ('The remoteApi library could not be loaded. Make sure')
