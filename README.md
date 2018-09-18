@@ -93,17 +93,17 @@ in directory `NAOlution`.
 ---
 
 ## How to find V-REP and NAOqi IPs & ports
-
 ### NAOqi
 Accessable NAOqi IPs and ports are usually shown when is `NAOqi-bin` started.
 
 ### V-REP
 #### Linux
-Accessable V-REP ports can be listed by command:
+### Linux
+You can list avalible network connections with:
 ```bash
+netstat -ntlp | grep LISTEN
 ```
-
----
+After starting V-REP is this command shows one V-REP connection. This combination needs to be set as `VREP_IP_2`, `VREP_PORT_2` in `consts.py`. After loading and and starting simulation is avalible second connection which needs to be set as `VREP_IP_1`, `VREP_PORT_1` in `consts.py`.
 
 ## Usage and exapmles
 First of all you need to change ip adresses and ports in `naolution/consts.py`. Especially `VREP_IP_1`, `VREP_PORT_1`, `VREP_IP_2`, `VREP_PORT_2`, `NAOQI_BIN_IP`, `NAOQI_BIN_PORT`.
