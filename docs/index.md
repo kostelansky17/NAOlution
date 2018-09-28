@@ -1,4 +1,3 @@
-# NAOlution 
 This project researches training Convolutional neural networks by genetic algorithm to navigate robot NAO to target objects. NAOlution was created during Research Summer 2018 at Faculty of information Technology CTU in Prague.
 
 The project composes from three main parts:
@@ -6,65 +5,12 @@ The project composes from three main parts:
  - Evolution which is genetic algorithm running real-time in V-REP created for training CNNs
  - CNN which creates used Convolutional neural networks and cross them over during the evolution
 
-![Image of Yaktocat](https://raw.githubusercontent.com/kostelansky17/NAOlution/master/images/nao.png?token=AfsFPetyS7r3ied4GC9qcFI_va7QitJOks5bqrAHwA%3D%3D)
+![Image of NAO](https://raw.githubusercontent.com/kostelansky17/NAOlution/master/images/nao.png)
 
 ---
 
 ## How does it work?
-![Image of Yaktocat](https://raw.githubusercontent.com/kostelansky17/NAOlution/master/images/architecture.png?token=AfsFPeAyofM0euAbLWnBqpuFLC9UgVAoks5bqqwWwA%3D%3D)
-
----
-
-## Project Structure
-```
-naolution
-│   README.md
-│   requriments.txt    
-│   Pipfile.lock
-|   setup.py
-│
-└───docs
-│       #GitHub page sources
-│
-└───scenes
-│       #V-REP scenes
-│
-└───logs
-│       #where logs from evolution will be stored
-│
-└───models
-│       #where trained models will be stored
-│
-└───naolution
-    |   #source code
-    |   evolution.py
-    |   consts.py
-    |
-    └───examples
-    |       evolution_ex.py
-    |       nao_movement_ex1.py
-    |       nao_movement_ex2.py
-    |
-    └───managers
-    |       joints_manager.py
-    |       movement_manager.py
-    |       object_manager.py
-    |       simulation_manager.py
-    |       sensors_manager.py
-    |       vision_manager.py
-    |       vision_manager.py
-    |
-    └───utils
-    |       checker.py
-    |       cnn.py
-    |
-    └───vrep
-            vrep.py
-            vrepConst.py
-            remoteApi.dylib
-            remoteApi.so     
-
-```
+![Image of Architecture](https://raw.githubusercontent.com/kostelansky17/NAOlution/master/images/architecture.png)
 
 ---
 
@@ -130,5 +76,58 @@ First of all you need to change ip adresses and ports in `naolution/consts.py`. 
 
 ---
 
+## Project Structure
+```
+naolution
+│   README.md
+│   requriments.txt    
+│   Pipfile.lock
+|   setup.py
+│
+└───docs
+│       #GitHub page sources
+│
+└───scenes
+│       #V-REP scenes
+│
+└───logs
+│       #where logs from evolution will be stored
+│
+└───models
+│       #where trained models will be stored
+│
+└───naolution
+    |   #source code
+    |   evolution.py
+    |   consts.py
+    |
+    └───examples
+    |       evolution_ex.py
+    |       nao_movement_ex1.py
+    |       nao_movement_ex2.py
+    |
+    └───managers
+    |       joints_manager.py
+    |       movement_manager.py
+    |       object_manager.py
+    |       simulation_manager.py
+    |       sensors_manager.py
+    |       vision_manager.py
+    |       vision_manager.py
+    |
+    └───utils
+    |       checker.py
+    |       cnn.py
+    |
+    └───vrep
+            vrep.py
+            vrepConst.py
+            remoteApi.dylib
+            remoteApi.so     
+
+```
+
+---
+
 ## Participate
-Any help is apriciated. If you would like to participate, please use *GitHub flow* and create reasonable names *Feature branch* and *Pull request*. 
+Any help is appreciated. If you would like to participate, please use *GitHub flow* and create reasonable names *Feature branch* and *Pull request*. 
