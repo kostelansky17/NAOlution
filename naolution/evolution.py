@@ -11,6 +11,8 @@ from naolution.managers.movement_manager import Movement
 import logging
 import datetime
 import time
+from keras import models
+import os
 
 
 class Individual():
@@ -74,8 +76,11 @@ class Evolution():
 
 
     def _save_models(self):
+        directory_path = "../models/evolution_" + datetime.datetime.now().strftime("%y-%m-%d_%H:%M")
+        if not os.path.exists(directory_path):
+            os.makedirs(directory_path)
         for i in range(0, int(self.population_size/10)):
-            self.population[i].model.save("../models/model_" + str(i) + ".h5")
+            self.population[i].model.save( directory_path + "/model_" + str(i) + ".h5")
 
 
     """
@@ -135,7 +140,7 @@ class Evolution():
     """
     def _stop_simulation(self, nao_position, target_position, run_time):
         distance = self._distance_from_taget(nao_position, target_position)
-        if run_time > self.scene_timeout or distance < 0.8:
+        if run_time > self.scene_timeout or distance < 0.25:
            return True
         return False
 
@@ -149,7 +154,7 @@ class Evolution():
     """
     def _run_simulation(self, model_number, client_ID, movement):
         simulation.start_simulation(client_ID)
-        time.sleep(5)
+        time.sleep(6)
 
         model = self.population[model_number].model
         
@@ -168,7 +173,6 @@ class Evolution():
 
         start_time = time.time()
         end_time = time.time()
-
         while not self._stop_simulation(nao_position, target_position, end_time - start_time):
             nao_position = object_manager.get_position(client_ID, nao_handle)
             resolution, sensor_img = simulation.get_vision_sensor_image_buff(client_ID, vision_handle)
@@ -192,7 +196,7 @@ class Evolution():
     """
     Runs Model/Individual in every Simulation used in Evolution alg
     
-    @param i: 
+    @param i: int
     @param client_ID: int
     @param model_number: int
     @param movement: instance of class Movement
@@ -231,7 +235,6 @@ class Evolution():
     """
     def start_evolution(self):
         for i in range(self.populations_number):
-            logging.info("POPULATION NUMBER: " + str(i))
             print("POPULATION NUMBER: " + str(i))
             self._run_epoch(i)
         
@@ -242,6 +245,6 @@ class Evolution():
 Functionality testing created while developent
 """
 if __name__ == "__main__":
-    SCENES = ["../scenes/NAO_CLASS_1.ttt"]
-    ev = Evolution(40, 50, 17, SCENES)
+    SCENES = ["../scenes/NAO1.ttt"]
+    ev = Evolution(2, 50, 5, SCENES)
     ev.start_evolution()
