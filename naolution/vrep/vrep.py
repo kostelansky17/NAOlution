@@ -37,20 +37,25 @@ from vrepConst import *
 libsimx = None
 
 def create_linux_path():
-    files = glob.glob('remoteApi.so')
-    if not files:
+    files1 = glob.glob('remoteApi.so')
+    files2 = glob.glob('../vrep/remoteApi.so')
+    
+    if not files1:
         path = "../vrep/"
-    else:
-        path = "./"
+    if not files2:
+        path = "./vrep/"
+
 
     return path
 
 def create_mac_path():
-    files = glob.glob('remoteApi.dylib')
-    if not files:
+    files1 = glob.glob('remoteApi.dylib')
+    files2 = glob.glob('../vrep/remoteApi.dylib')
+    
+    if not files1:
         path = "../vrep/"
-    else:
-        path = "./"
+    if not files2:
+        path = "./vrep/"
 
     return path
 
