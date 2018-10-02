@@ -1,4 +1,5 @@
 # NAOlution 
+## NAO & V-REP & Keras & Convolutional neural networks
 This project researches training Convolutional neural networks by genetic algorithm to navigate robot NAO to target objects. NAOlution was created during Research Summer 2018 at Faculty of information Technology CTU in Prague.
 
 The project composes from three main parts:
