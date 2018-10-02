@@ -46,7 +46,6 @@ Accessable NAOqi IPs and ports are usually shown when is `NAOqi-bin` started.
 
 ### V-REP
 #### Linux
-### Linux
 You can list avalible network connections with:
 ```bash
 netstat -ntlp | grep LISTEN
