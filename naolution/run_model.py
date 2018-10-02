@@ -10,8 +10,8 @@ from keras import models
 
 
 SCENE = "../scenes/NAO1.ttt"
-TIMEOUT = 40
-MODEL_PATH = "../models/model_0.h5"
+TIMEOUT = 25
+MODEL_PATH = "../models/evolution_18-09-30_11:09/model_-2.465488178716244.h5"
 
 def evaluate_individual(run_time, distance_from_target):
     return - distance_from_target * 10
@@ -23,7 +23,7 @@ def distance_from_taget(nao_position, target_position):
 
 def stop_simulation(nao_position, target_position, run_time):
     distance = distance_from_taget(nao_position, target_position)
-    if run_time > TIMEOUT or distance < 0.8:
+    if run_time > TIMEOUT or distance < 0.25:
         return True
     return False
 
