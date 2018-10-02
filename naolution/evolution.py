@@ -41,8 +41,9 @@ class Evolution():
         self.scene_timeout = scene_timeout
         self.scenes = scenes
         self.population = self._create_initial_population()
+        self.date_time = datetime.datetime.now().strftime("%y-%m-%d_%H:%M")
         logging.basicConfig(filename='../logs/evolution_' +
-                            datetime.datetime.now().strftime("%y-%m-%d_%H:%M")
+                           self.date_time
                             + '.log',level=logging.INFO)
 
     """
@@ -76,11 +77,22 @@ class Evolution():
 
 
     def _save_models(self):
+        self.population.sort(key=lambda x: x.rank, reverse=True)
         directory_path = "../models/evolution_" + datetime.datetime.now().strftime("%y-%m-%d_%H:%M")
         if not os.path.exists(directory_path):
             os.makedirs(directory_path)
-        for i in range(0, int(self.population_size/10)):
-            self.population[i].model.save( directory_path + "/model_" + str(i) + ".h5")
+        
+        for i in range(int(self.population_size/10)):
+            self.population[i].model.save( directory_path + "/model_" + str( self.population[i].rank) + ".h5")
+
+
+    def _save_generation(self):
+        directory_path = "../models/evolution_" + self.date_time
+        if not os.path.exists(directory_path):
+            os.makedirs(directory_path)
+
+        for i in range(self.population_size):
+            self.population[i].model.save( directory_path + "/model_" + str( self.population[i].rank) + ".h5")
 
 
     """
@@ -88,7 +100,7 @@ class Evolution():
     
     @return population: list of models
     """
-    def _create_population(self, population_number):
+    def _create_population(self):
         new_population = []
         self.population.sort(key=lambda x: x.rank, reverse=True)
         population_select = int(self.population_size * 0.3)
@@ -115,7 +127,7 @@ class Evolution():
     @return -rank
     """
     def _evaluate_individual(self, run_time, distance_from_target):
-        return - run_time - distance_from_target * 10
+        return - distance_from_target * 10
 
 
     """
@@ -226,19 +238,20 @@ class Evolution():
         
         simulation.stop_connection(client_ID)
 
-        new_population = self._create_population(population_number)
-        self.population = new_population
-
 
     """
     Starts Evolution
     """
     def start_evolution(self):
-        for i in range(self.populations_number):
+        for i in range(self.populations_number) - 1:
             print("POPULATION NUMBER: " + str(i))
             self._run_epoch(i)
+
+            new_population = self._create_population()
+            self.population = new_population
         
-        self._save_models()
+        self._run_epoch(self.populations_number - 1)
+        self._save_generation()
 
 
 """
@@ -246,5 +259,5 @@ Functionality testing created while developent
 """
 if __name__ == "__main__":
     SCENES = ["../scenes/NAO1.ttt"]
-    ev = Evolution(2, 50, 5, SCENES)
+    ev = Evolution(50, 30, 25, SCENES)
     ev.start_evolution()
