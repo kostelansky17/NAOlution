@@ -1,0 +1,138 @@
+\documentclass[twocolumn,10pt]{asme2ej}
+\usepackage{epsfig}
+\usepackage{graphicx}
+\graphicspath{ {./figure/} }
+
+\title{NAOlution: Using Convolutional neural network to navigate robot NAO towards an object}
+
+\author{Martin Kostelansky
+    \affiliation{
+	Faculty of Informaion Technology\\
+	Czech Technical University\\
+	Prague, Czechia\\
+    Email: kostema3@fit.cvut.cz
+    }	
+}
+
+\begin{document}
+
+\maketitle
+\begin{abstract}
+{\it NAOlution rearches training Convolutional neural network to \
+navigate robot NAO towards an object using image input. Convolutional \
+Neural networks were trianed by genetic algorithm in real-time \
+simulation. By this method were nets trianed to navigatge robot NAO \
+towards "plant like object" in simulation.}
+
+\end{abstract}
+
+\section{Introduction}
+Convloutional neural networks have been widly used for many purposes \
+such as classification or localization. In our research we tried to \
+use ligtened CNN to navigate robot NAO in real-time simulation towards \
+an object. The network's architecture was inspired by VGG [link]. To \
+train such networks we used genetic algorithm. There were ranked by \ 
+by the distance of the robot from the target. By this method we were \
+able to train a model to come to close distance of the selected object.
+
+\section{Network architecture}
+The network's arcitechture was mainly inspired by deep convloutional \
+neural nets used for image recognition such as VGG [link]. The \
+architecture was lightened down to use this network for multiple \
+frames per second.
+\subsection{Input}
+The image from NAO's camere were resized to $128x128$ pixels \
+grayscale, so the input dimension was $128x128x1$, where were \
+the values from interval $(0,255)$.
+\subsection{Convolutional and pooling layers}
+The first layer was a maxpooling layer with receptor field $2x2$ \
+pixels and the spatial resoultion of the output from this layer \
+is thus $64x64x1$. This layer follows two convilutional layers \
+both with four fearure maps with receptor field $4x4$ pixels \
+and bias equals to one. The next sequence of convolutional layers \
+is separated with maxpooling pooling layer with receptor field \
+$4x4$ pixels. Second block of convolutional block is composed \
+from two layers, both with eight fearure maps and receptor fields \
+$4x4$ pixels. Last layer is again maxpooling layer with receptor \
+field $2x2$ pixels.
+\par Every convolutional layer was inicialized to random value from\
+normal distribution with mean $0.0$ and standard deviation \
+$0.05$.
+
+\subsection{Fully connected layers}
+Convolutional and pooling layers are followed by two fully connected \
+layers, both of them contains eight neurons activated by \textsc{ReLu} \
+function and their weighst were randomly selected from normal \
+distribution with mean $0.0$ and standard deviation $0.05$.\
+
+\subsection{Output layer}
+Output layer has only three neurons, all of them use as activation \
+function \textsc{TanH} function and were randomly selected from normal \
+distribution with mean $0.0$ and standard deviation $0.05$.\
+\par Every output from these layer features robot's velocity \
+towards/backward, left/right and left/right spin.
+
+\begin{center}
+    \begin{tabular}{ |c|c| } 
+     \hline
+     Layer & Dimension \\ 
+     \hline
+     \hline  
+     Input & 128x128x1 \\ 
+     \hline
+     MaxPool1 & 2x2, stride 1 \\ 
+     \hline
+     Conv1 & 4x4, 4 x 2 \\
+     \hline
+     MaxPool2 & 2x2, stride 1 \\ 
+     \hline
+     Conv2 & 4x4, 4 x 2 \\ 
+     \hline
+     MaxPool3 & 2x2, stride 1 \\
+     \hline
+     FC1 & 16 relu \\
+     \hline
+     FC2 & 16 relu \\
+     \hline
+     FC3 & 3 tanh \\
+     \hline
+    \end{tabular}
+    \end{center}
+
+\section{Evolution algorithm}
+During the evolution was created a polulation containing $50$ individuals \
+created by process descripted in [Link]. Each individual was evaluated \
+by the distance from the target. Indivudual simulation run lasted until \
+the robot commes to a target or until the timeout. After each epoch \
+wes created a new generation by crossing layers of two individuals. \
+Indivuduals for crossing were randomly selected from normal distribution \
+with mean $0.0$ and standard deviation equals to $30\%$ of the populaiton \
+size. Evolution ran for $30$ generations. Graph [link] describes \
+average, best and worst performance.
+
+\begin{figure}[ht]
+    \includegraphics[width=0.45\textwidth]{evolution.png}
+    \caption{Distance from the target during the evolution.}
+\end{figure}
+
+\section{Conclusion}
+In this work we have shown that it's possible to use Convolutional neural \
+networks to navigate robot towards an object in real time simulation. \
+To use train CNN to navigate the robot NAO towards an object in multiple \
+positions, or to generalize the target object would be needed more similations \
+with diferent positions and diferent "similar objects" (e.g. in our case \
+diferent "plant like objects"). Based on the research when was trained robotic \
+arm to manipulate cubes [link] to highlite the target object would be also \
+needed to change backround and floor to multiple patterns during the training.
+
+\begin{acknowledgment}
+I'd like to thank Faculty of Informaiton Technology CTU in Prague for the \
+oportunity and resources to make this reaserch hapend. I'd also like to thank to \
+proffessor Pablo Mandulado for many consultations and valuable advices during \
+my work.
+\end{acknowledgment}
+
+\bibliographystyle{asmems4}
+\bibliography{asme2e}
+
+\end{document}
