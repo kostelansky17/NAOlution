@@ -18,60 +18,62 @@
 
 \maketitle
 \begin{abstract}
-{\it NAOlution rearches training Convolutional neural network to \
-navigate robot NAO towards an object using image input. Convolutional \
-Neural networks were trianed by genetic algorithm in real-time \
-simulation. By this method were nets trianed to navigatge robot NAO \
+{\it NAOlution has researched training Convolutional neural network to \
+navigate robot NAO towards an object using an image input. Convolutional \
+Neural networks have been trained by genetic algorithm in the real-time \
+simulation. Nets have been trained by this method to navigate robot NAO \
 towards "plant like object" in simulation.}
 
 \end{abstract}
 
 \section{Introduction}
-Convloutional neural networks have been widly used for many purposes \
-such as classification or localization. In our research we tried to \
-use ligtened CNN to navigate robot NAO in real-time simulation towards \
-an object. The network's architecture was inspired by VGG [link]. To \
-train such networks we used genetic algorithm. There were ranked by \ 
+Convloutional neural networks have been widely used for many purposes \
+such as classification or localization. In our research we have tried to \
+use lightened CNNs to navigate robot NAO in real-time simulation towards \
+an object. The architecture of the network was inspired by VGG\cite{VGG16}. To \
+train such networks we used genetic algorithm. Which were ranked \ 
 by the distance of the robot from the target. By this method we were \
 able to train a model to come to close distance of the selected object.
 
 \section{Network architecture}
-The network's arcitechture was mainly inspired by deep convloutional \
-neural nets used for image recognition such as VGG [link]. The \
+\label{sec:architecture}
+The network's architecture was mainly inspired by deep convloutional \
+neural nets used for image recognition such as VGG\cite{VGG16}. The \
 architecture was lightened down to use this network for multiple \
 frames per second.
 \subsection{Input}
-The image from NAO's camere were resized to $128x128$ pixels \
+The imagees from NAO's camera were resized to $128x128$ pixels \
 grayscale, so the input dimension was $128x128x1$, where were \
 the values from interval $(0,255)$.
 \subsection{Convolutional and pooling layers}
 The first layer was a maxpooling layer with receptor field $2x2$ \
-pixels and the spatial resoultion of the output from this layer \
-is thus $64x64x1$. This layer follows two convilutional layers \
-both with four fearure maps with receptor field $4x4$ pixels \
+pixels and the spatial resolution of the output from this layer \
+is thus $64x64x1$. This layer follow two convolutional layers \
+both with four feature maps with receptor field $4x4$ pixels \
 and bias equals to one. The next sequence of convolutional layers \
-is separated with maxpooling pooling layer with receptor field \
+is separated by maxpooling pooling layer with receptor field \
 $4x4$ pixels. Second block of convolutional block is composed \
-from two layers, both with eight fearure maps and receptor fields \
+from two layers, both with eight feature maps and receptor fields \
 $4x4$ pixels. Last layer is again maxpooling layer with receptor \
 field $2x2$ pixels.
-\par Every convolutional layer was inicialized to random value from\
+\par Every convolutional layer was initialized to random value from\
 normal distribution with mean $0.0$ and standard deviation \
 $0.05$.
 
 \subsection{Fully connected layers}
 Convolutional and pooling layers are followed by two fully connected \
 layers, both of them contains eight neurons activated by \textsc{ReLu} \
-function and their weighst were randomly selected from normal \
-distribution with mean $0.0$ and standard deviation $0.05$.\
+function and their weights were randomly selected from normal \
+distribution with mean $0.0$ and standard deviation $0.05$.
 
 \subsection{Output layer}
-Output layer has only three neurons, all of them use as activation \
+Output layer has only three neurons, all of them use as an activation \
 function \textsc{TanH} function and were randomly selected from normal \
 distribution with mean $0.0$ and standard deviation $0.05$.\
-\par Every output from these layer features robot's velocity \
+\par Every output from these layers features robot's velocity \
 towards/backward, left/right and left/right spin.
 
+\begin{figure}[ht]
 \begin{center}
     \begin{tabular}{ |c|c| } 
      \hline
@@ -98,37 +100,41 @@ towards/backward, left/right and left/right spin.
      \hline
     \end{tabular}
     \end{center}
+    \caption{Distance from the target during the evolution.}
+    \label{fig:tbl}
+\end{figure}
 
 \section{Evolution algorithm}
-During the evolution was created a polulation containing $50$ individuals \
-created by process descripted in [Link]. Each individual was evaluated \
-by the distance from the target. Indivudual simulation run lasted until \
-the robot commes to a target or until the timeout. After each epoch \
-wes created a new generation by crossing layers of two individuals. \
-Indivuduals for crossing were randomly selected from normal distribution \
-with mean $0.0$ and standard deviation equals to $30\%$ of the populaiton \
-size. Evolution ran for $30$ generations. Graph [link] describes \
+During the evolution was created a population containing $50$ individuals \
+created by process described in section~\ref{sec:architecture}. Each individual was evaluated \
+by the distance from the target. Individual simulation run lasted until \
+the robot comes to a target or until the timeout. After each epoch \
+was created a new generation by crossing layers of two individuals. \
+Individuals for crossing were randomly selected from normal distribution \
+with mean $0.0$ and standard deviation equals to $30\%$ of the population \
+size. Evolution ran for $30$ generations. The figure~\ref{fig:gr} describes \
 average, best and worst performance.
 
 \begin{figure}[ht]
     \includegraphics[width=0.45\textwidth]{evolution.png}
     \caption{Distance from the target during the evolution.}
+    \label{fig:gr}
 \end{figure}
 
 \section{Conclusion}
 In this work we have shown that it's possible to use Convolutional neural \
 networks to navigate robot towards an object in real time simulation. \
 To use train CNN to navigate the robot NAO towards an object in multiple \
-positions, or to generalize the target object would be needed more similations \
-with diferent positions and diferent "similar objects" (e.g. in our case \
-diferent "plant like objects"). Based on the research when was trained robotic \
-arm to manipulate cubes [link] to highlite the target object would be also \
-needed to change backround and floor to multiple patterns during the training.
+positions, or to generalize the target object would be needed more simulations \
+with different positions and different "similar objects" (e.g. in our case \
+different "plant like objects"). Based on the research when was trained robotic \
+arm to manipulate cubes \cite{OAI} to highlight the target object would be also \
+needed to change background and floor to multiple patterns during the training.
 
 \begin{acknowledgment}
-I'd like to thank Faculty of Informaiton Technology CTU in Prague for the \
-oportunity and resources to make this reaserch hapend. I'd also like to thank to \
-proffessor Pablo Mandulado for many consultations and valuable advices during \
+I'd like to thank Faculty of Information Technology CTU in Prague for the \
+opportunity and resources to make this reasearch happened. I'd also like to thank to \
+professor Pablo Maldonado for many consultations and valuable advises during \
 my work.
 \end{acknowledgment}
 

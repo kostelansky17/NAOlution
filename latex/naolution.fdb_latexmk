@@ -1,15 +1,15 @@
 # Fdb version 3
-["bibtex naolution"] 1538805508 "naolution.aux" "naolution.bbl" "naolution" 1538805566
+["bibtex naolution"] 1539799350 "naolution.aux" "naolution.bbl" "naolution" 1539799351
   "./asmems4.bst" 1357261833 25583 1f5756761e817b92e0a24aa53bf459b4 ""
-  "asme2e.bib" 1357261832 4332 f55a6edf02b8d7a46a35253123077b2f ""
-  "naolution.aux" 1538805566 815 654185ffaf8c0e247f3f67ec4ffa5323 ""
+  "asme2e.bib" 1539799335 1219 a854066a5c6bfd110f61971e811bfdef ""
+  "naolution.aux" 1539799351 1112 d7995f1bda6c9f18ed4eca204849a81f ""
   "naolution.bcf" 0 -1 0 ""
   (generated)
-  "naolution.bbl"
   "naolution.blg"
-["pdflatex"] 1538805566 "/home/martin/Documents/naolution/latex/naolution.tex" "naolution.pdf" "naolution" 1538805566
+  "naolution.bbl"
+["pdflatex"] 1539799351 "/home/martin/Documents/naolution/latex/naolution.tex" "naolution.pdf" "naolution" 1539799351
   "/etc/texmf/web2c/texmf.cnf" 1518811629 475 c0e671620eb5563b2130f56340a5fde8 ""
-  "/home/martin/Documents/naolution/latex/naolution.tex" 1538805566 5464 1adae1b5b757ff2a896fd5caa223ba0a ""
+  "/home/martin/Documents/naolution/latex/naolution.tex" 1539799349 5710 98135535809200de838a4622805ef85c ""
   "/usr/share/texlive/texmf-dist/fonts/enc/dvips/base/8r.enc" 1480098666 4850 80dc9bab7f31fb78a000ccfed0e27cab ""
   "/usr/share/texlive/texmf-dist/fonts/map/fontname/texfonts.map" 1511824771 3332 103109f5612ad95229751940c61aada0 ""
   "/usr/share/texlive/texmf-dist/fonts/tfm/adobe/helvetic/phvb7t.tfm" 1480098688 2240 eb56c13537f4d8a0bd3fafc25572b1bd ""
@@ -75,13 +75,13 @@
   "/usr/share/texlive/texmf-dist/web2c/texmf.cnf" 1520210507 32485 c64754543d8ac501bea6e75e209ea521 ""
   "/usr/share/texmf/web2c/texmf.cnf" 1520210507 32485 c64754543d8ac501bea6e75e209ea521 ""
   "/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map" 1527491527 2700761 ac0584cc9514ab21918550a6948c4ee2 ""
-  "/var/lib/texmf/web2c/pdftex/pdflatex.fmt" 1527491560 4129578 4b61a14137361170cbb13b0cec517399 ""
+  "/var/lib/texmf/web2c/pdftex/pdflatex.fmt" 1539549845 4129409 708610da025aa40b3755327e8c52c841 ""
   "asme2ej.cls" 1357261833 47788 0516a182f765053771c16148b822c116 ""
   "figure/evolution.png" 1538731615 42442 855e92dc26aa48245778536cee03911d ""
-  "naolution.aux" 1538805566 815 654185ffaf8c0e247f3f67ec4ffa5323 ""
-  "naolution.bbl" 1538805508 49 0eba253fc001332e731e8aba3f23127b "bibtex naolution"
-  "naolution.tex" 1538805566 5464 1adae1b5b757ff2a896fd5caa223ba0a ""
+  "naolution.aux" 1539799351 1112 d7995f1bda6c9f18ed4eca204849a81f ""
+  "naolution.bbl" 1539799351 492 74d4caca8510cbecf9b802c63b0a65f9 "bibtex naolution"
+  "naolution.tex" 1539799349 5710 98135535809200de838a4622805ef85c ""
   (generated)
+  "naolution.pdf"
   "naolution.aux"
   "naolution.log"
-  "naolution.pdf"

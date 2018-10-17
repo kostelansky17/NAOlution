@@ -1,3 +1,15 @@
-\begin{thebibliography}{}
+\begin{thebibliography}{1}
+
+\bibitem{VGG16}
+{Simonyan}, K., and {Zisserman}, A., 2014.
+\newblock ``{Very Deep Convolutional Networks for Large-Scale Image
+  Recognition}''.
+\newblock {\em ArXiv e-prints}, sep, pp.~1--5.
+
+\bibitem{OAI}
+Tobin, J., Fong, R., Ray, A., Schneider, J., Zaremba, W., and Abbeel, P., 2017.
+\newblock ``Domain randomization for transferring deep neural networks from
+  simulation to the real world''.
+\newblock {\em CoRR, {\bf abs/1703.06907}}.
 
 \end{thebibliography}
